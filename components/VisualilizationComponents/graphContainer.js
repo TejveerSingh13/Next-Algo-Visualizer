@@ -1,30 +1,29 @@
-import styles from './style.module.css'
+import { Container, AlgoTitle, VisualContainer, RowContainer, ColContainer, BarContainer, BarIndicator } from './style'
 
 const GraphContainer = (props) => {
   const data = [6, 15, 30, 40,25,14,23,2,11,16,27,38]
   // const data = [6, 15, 300, 4]
   return(
-    <div className={styles.container}>
-      <div className={styles.algoTitle}>Bubble Sort</div>  
-      <div className={styles.visualContainer}>
-        <div className={styles.rowContainer}>
+    <Container>
+      <AlgoTitle>Bubble Sort</AlgoTitle>  
+      <VisualContainer>
+        <RowContainer>
           {data.map((d, ind )=> {
             const high = Math.round((d/40)*100)
-            console.log('here',high)
             return (
-            <div className={styles.colContainer} key={Math.random()}>
+            <ColContainer key={Math.random()}>
               <div>{d}</div>
-              <div className={styles.barContainer}>
-                <div className={styles.barIndicator} style={{height: `${high}%`}} />
-              </div>
+              <BarContainer>
+                <BarIndicator height={`${high}%`} />
+              </BarContainer>
               <div>{ind}</div>
               {/* <div>i/j</div> */}
-            </div>
+            </ColContainer>
             )})}
-        </div>
-      </div>
+        </RowContainer>
+      </VisualContainer>
       {props.children}
-    </div>
+    </Container>
   )
 }
 export default GraphContainer

@@ -1,40 +1,41 @@
-.container {
+import styled from "styled-components";
+
+export const Container = styled.div`
   color: blue;
   margin: 24px;
   display: flex;
   flex-direction: column;
-}
-.algoTitle {
+  @media (min-width: 992px) {
+    margin: 32px;
+  }
+`
+export const AlgoTitle = styled.div`
   font-size: 32px;
   line-height: 24px;
   margin-bottom: 24px;
-}
-.visualContainer{
+`
+export const VisualContainer = styled.div`
   display: flex;
   flex-direction: column;
-}
-.rowContainer{
+`
+export const RowContainer = styled.div`
   display: flex;
   justify-content: space-evenly;
   margin-bottom: 8px;
-}
-.colContainer{
+`
+export const ColContainer = styled.div`
   display: flex;
   flex-direction: column;
   min-width: 30px;
   align-items: center;
-}
-.barContainer{
+`
+export const BarContainer = styled.div`
   height: 136px;
   width: 70%;
   display: flex;
   flex-direction: column-reverse;
-}
-.barIndicator{
+`
+export const BarIndicator = styled.div`
   background-color: lightcoral;
-}
-@media (min-width: 992px) {
-  .container{
-  margin: 32px;
-  }  
-}
+  height: ${props => props?.height}
+`
