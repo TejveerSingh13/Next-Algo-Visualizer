@@ -1,19 +1,42 @@
-import { Button } from 'react-bootstrap'
+
+import { useEffect, useState } from 'react'
 import { bubbleSort } from '../../algorithms/sorting algo/bubblesort' 
-import { VisualContainer, RowContainer, ColContainer, BarContainer, BarIndicator } from './style'
+import { VisualContainer,
+    RowContainer,
+    ColContainer,
+    BarContainer, 
+    BarIndicator, 
+    ValueTag, 
+    ControlWrapper, 
+    IconContainer, 
+    StepsContainer,
+    ControlButton,
+    CurrentStepContainer,
+    CurrentStepTitle,
+    CurrentStepValue
+  } from './style'
+const leftIcon = require('../../public/icons/back.png')
+const playIcon = require('../../public/icons/icons8-play-64.png')
+const stopIcon = require('../../public/icons/icons8-stop-64.png')
 
 const BubbleSort = ({data}) => {
 
-  const sortFunction = () => bubbleSort(data)
+  const [initialData, setinitialData] = useState([...data])
+  const [dataSteps, setDataSteps] = useState(null)
+
+  useEffect(() => {
+    const newData = bubbleSort(data)
+    setDataSteps(newData)
+  },[])
 
   return(
     <VisualContainer>
         <RowContainer>
-          {data.map((d, ind )=> {
-            const high = Math.round((d/15)*100)
+          {initialData.map((d, ind )=> {
+            const high = Math.round((d/20)*100)
             return (
             <ColContainer key={Math.random()}>
-              <div>{d}</div>
+              <ValueTag>{d}</ValueTag>
               <BarContainer>
                 <BarIndicator height={`${high}%`} />
               </BarContainer>
@@ -22,7 +45,20 @@ const BubbleSort = ({data}) => {
             </ColContainer>
             )})}
         </RowContainer>
-        <Button onClick={sortFunction}>herre</Button>
+        <ControlWrapper>
+          <StepsContainer>
+            <ControlButton>Play</ControlButton>
+            <ControlButton>Stop</ControlButton>
+          </StepsContainer>
+          <CurrentStepContainer>
+            <CurrentStepTitle>Step</CurrentStepTitle>
+            <CurrentStepValue>1/5</CurrentStepValue>
+          </CurrentStepContainer>
+          <StepsContainer>
+            <ControlButton><IconContainer back src={leftIcon} /> Prev</ControlButton>
+            <ControlButton>Next <IconContainer src={leftIcon}/></ControlButton>
+          </StepsContainer>
+        </ControlWrapper>
       </VisualContainer>
   )
 }
