@@ -2,6 +2,7 @@
 
 export const bubbleSort = (arr) => {
 
+	const newArray = [...arr]
 	const finalArray = []
 
 	const swap = (arry, index) => { 
@@ -9,13 +10,13 @@ export const bubbleSort = (arr) => {
 		return arry 
 	}
 
-	for (let i = arr.length -1 ; i >= 0; i--) {
+	for (let i = newArray.length -1 ; i >= 0; i--) {
 		for (let j = 0; j < i; j++) {
-			if(arr[j] > arr[j+1]) {
-				swap(arr,j)
+			if(newArray[j] > newArray[j+1]) {
+				swap(newArray,j)
 			}
 			let data = {
-				array: arr,
+				array: [...newArray],
 				index: j
 			}
 			finalArray.push(data)
