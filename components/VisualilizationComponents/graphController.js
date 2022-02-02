@@ -14,22 +14,38 @@ import {
 
 const GraphController = () => {
 
-  const data = useContext(GraphControllerContext)
-  console.log('here', data);
+  const {controlData, setControlData} = useContext(GraphControllerContext)
+  let {start, stepCount, currentStep} = controlData
+
+  const onPlay = () => {
+    setControlData({...controlData, start:!start})
+  }
+  const onNext = (event) => {
+    currentStep++
+    if(currentStep < stepCount){
+      setControlData({...controlData, currentStep:currentStep})
+    }
+  }
+  const onPrev = (event) => {
+    if(currentStep > 0) {
+      currentStep--
+      setControlData({...controlData, currentStep:currentStep})
+    }
+  }
 
   return(
     <ControlWrapper>
       <StepsContainer>
-        <ControlButton>Play</ControlButton>
-        <ControlButton>Stop</ControlButton>
+        <ControlButton onClick={onPlay} disabled={start}>Play</ControlButton>
+        <ControlButton onClick={onPlay} disabled={!start}>Stop</ControlButton>
       </StepsContainer>
       <CurrentStepContainer>
         <CurrentStepTitle>Step</CurrentStepTitle>
-        <CurrentStepValue>1/5</CurrentStepValue>
+        <CurrentStepValue>{currentStep + 1}/5</CurrentStepValue>
       </CurrentStepContainer>
       <StepsContainer>
-        <ControlButton><IconContainer back='true' src={leftIcon} /> Prev</ControlButton>
-        <ControlButton>Next <IconContainer src={leftIcon}/></ControlButton>
+        <ControlButton onClick={onPrev} disabled={start}><IconContainer back='true' src={leftIcon} /> Prev</ControlButton>
+        <ControlButton onClick={onNext} disabled={start}>Next <IconContainer src={leftIcon}/></ControlButton>
       </StepsContainer>
     </ControlWrapper>
   )

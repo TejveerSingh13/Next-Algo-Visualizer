@@ -11,15 +11,14 @@ import {
 const GraphContainer = () => {
   // const data = [6, 15, 30, 40,25,14,23,2,11,16,27,38]
   const [controlData, setControlData] = useState({
-     inputData: [20, 15, 7, 4],
      start: false,
-     stepCount: 0,
+     stepCount: 5,
      currentStep: 0
   })
 
   const data = [20, 15, 7, 4]
   return(
-    <GraphControllerContext.Provider value={{...controlData, setControlData}}>
+    <GraphControllerContext.Provider value={{controlData, setControlData}}>
       <Container>
         <AlgoTitle>Bubble Sort</AlgoTitle>  
         <VisualContainer>
